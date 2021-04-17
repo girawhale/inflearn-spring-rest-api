@@ -42,6 +42,7 @@ public class EventController {
             return ResponseEntity.badRequest().body(errors);
 
         Event event = modelMapper.map(eventDto, Event.class);
+        event.update();
         Event newEvent = this.eventRepository.save(event);
         System.out.println(event);
         System.out.println(newEvent);
