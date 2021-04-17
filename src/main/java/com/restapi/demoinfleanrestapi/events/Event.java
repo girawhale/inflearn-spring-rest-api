@@ -36,7 +36,7 @@ public class Event {
         // Update Free
         this.free = (this.basePrice == 0 && this.maxPrice == 0);
 
-        this.offline = !(this.location == null && this.location.isBlank());
+        this.offline = (this.location != null && !this.location.isBlank());
 
     }
 }
