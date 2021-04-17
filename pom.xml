@@ -39,12 +39,18 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional> <!-- 프로젝트를 참조하는 다른 프로젝트에 의존성이 추가되지 않음-->
         </dependency>
+        <dependency> <!--validation start가 제거되어 직접 추가해야 함-->
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.5.Final</version>
+        </dependency>
+
 
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
