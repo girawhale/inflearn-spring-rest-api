@@ -18,6 +18,7 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeFactory;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -37,6 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @Import(RestDocsConfiguration.class)
+@ActiveProfiles("test")
 public class EventControllerTests {
 
     @Autowired
@@ -80,16 +82,17 @@ public class EventControllerTests {
                 .andExpect(jsonPath("free").value(false))
                 .andExpect(jsonPath("offline").value(true))
                 .andExpect(jsonPath("eventStatus").value(EventStatus.DRAFT.name()))
-                .andExpect(jsonPath("_links.self").exists())
-//                .andExpect(jsonPath("_links.profile").exists()) 차후 추가
-                .andExpect(jsonPath("_links.query-events").exists())
-                .andExpect(jsonPath("_links.update-event").exists())
+//                .andExpect(jsonPath("_links.self").exists()) 어차피 rest docs가 체크해주기 때문에 제거해도 된다!
+//                .andExpect(jsonPath("_links.profile").exists())
+//                .andExpect(jsonPath("_links.query-events").exists())
+//                .andExpect(jsonPath("_links.update-event").exists())
 
                 .andDo(document("create-event",
                         links(
                                 linkWithRel("self").description("link to self"),
                                 linkWithRel("query-events").description("link to query events"),
-                                linkWithRel("update-event").description("link to update an existing event")
+                                linkWithRel("update-event").description("link to update an existing event"),
+                                linkWithRel("profile").description("link to profile")
                         ),
                         requestHeaders(
                                 headerWithName(HttpHeaders.ACCEPT).description("accept header"),
@@ -112,7 +115,7 @@ public class EventControllerTests {
                                 headerWithName(HttpHeaders.CONTENT_TYPE).description("content type header")
                         ),
 //                        relaxedResponseFields( // relaxed~를 사용하면 응답 필드가 매칭만 되면 됨. 부가적 정보를 제외...
-                        responseFields( // relaxed~를 사용하면 응답 필드가 매칭만 되면 됨. 부가적 정보를 제외...
+                        responseFields(
                                 fieldWithPath("id").description("Identifier of New event"),
                                 fieldWithPath("name").description("Name of New event"),
                                 fieldWithPath("description").description("Description of New event"),
@@ -129,7 +132,8 @@ public class EventControllerTests {
                                 fieldWithPath("eventStatus").description("Event status"),
                                 fieldWithPath("_links.self.href").description("link to self"),
                                 fieldWithPath("_links.query-events.href").description("link to query events"),
-                                fieldWithPath("_links.update-event.href").description("link to update an existing event")
+                                fieldWithPath("_links.update-event.href").description("link to update an existing event"),
+                                fieldWithPath("_links.profile.href").description("link to profile")
                         )
                 ))
         ;
