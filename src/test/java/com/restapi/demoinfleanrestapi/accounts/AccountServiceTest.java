@@ -1,5 +1,6 @@
 package com.restapi.demoinfleanrestapi.accounts;
 
+import com.restapi.demoinfleanrestapi.common.AppProperties;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,24 +31,17 @@ public class AccountServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    AppProperties appProperties;
+
     @Test
     public void findByUsername() {
-        // Given
-        String username = "girawhale@naver.com";
-        String password = "password";
-//        Account account = Account.builder()
-//                .email(username)
-//                .password(password)
-//                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-//                .build();
-//        this.accountService.saveAccount(account);
-
         // When
         UserDetailsService userDetailsService = accountService;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(appProperties.getUserUsername());
 
         // Then
-        assertThat(this.passwordEncoder.matches(password, userDetails.getPassword())).isTrue();
+        assertThat(this.passwordEncoder.matches(appProperties.getUserPassword(), userDetails.getPassword())).isTrue();
     }
 
     @Test

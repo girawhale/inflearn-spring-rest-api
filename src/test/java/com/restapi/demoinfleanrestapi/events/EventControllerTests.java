@@ -1,7 +1,13 @@
 package com.restapi.demoinfleanrestapi.events;
 
+import com.restapi.demoinfleanrestapi.accounts.Account;
+import com.restapi.demoinfleanrestapi.accounts.AccountRepository;
+import com.restapi.demoinfleanrestapi.accounts.AccountRole;
+import com.restapi.demoinfleanrestapi.accounts.AccountService;
+import com.restapi.demoinfleanrestapi.common.AppProperties;
 import com.restapi.demoinfleanrestapi.common.BaseControllerTest;
 import com.restapi.demoinfleanrestapi.common.TestDescription;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
@@ -11,6 +17,7 @@ import org.springframework.security.oauth2.common.util.Jackson2JsonParser;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
@@ -27,6 +34,21 @@ public class EventControllerTests extends BaseControllerTest {
 
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    AccountRepository accountRepository;
+
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
+    AppProperties appProperties;
+
+    @Before
+    public void setUp() {
+        this.eventRepository.deleteAll();
+        this.accountRepository.deleteAll();
+    }
 
     @Test
     @TestDescription("정상적 이벤트 생성")
@@ -123,17 +145,17 @@ public class EventControllerTests extends BaseControllerTest {
     }
 
     private String getAccessToken() throws Exception {
-        // Given
-        String username = "girawhale@naver.com";
-        String password = "password";
-
-        String clientId = "myApp";
-        String clientSecret = "pass";
+        Account user = Account.builder()
+                .email(appProperties.getUserUsername())
+                .password(appProperties.getUserPassword())
+                .roles(Set.of(AccountRole.USER))
+                .build();
+        accountService.saveAccount(user);
 
         ResultActions perform = this.mockMvc.perform(post("/oauth/token")
-                .with(httpBasic(clientId, clientSecret))
-                .param("username", username)
-                .param("password", password)
+                .with(httpBasic(appProperties.getClientId(), appProperties.getClientSecret()))
+                .param("username", appProperties.getUserUsername())
+                .param("password", appProperties.getUserPassword())
                 .param("grant_type", "password"));
 
         String response = perform.andReturn().getResponse().getContentAsString();

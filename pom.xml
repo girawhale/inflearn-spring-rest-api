@@ -54,12 +54,17 @@
             <version>2.3.1</version>
         </dependency>
 
-
         <!--Spring Security-->
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
             <version>2.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency><!--application.properties에서 자동완성할 수 있도록 도와줌-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
 
