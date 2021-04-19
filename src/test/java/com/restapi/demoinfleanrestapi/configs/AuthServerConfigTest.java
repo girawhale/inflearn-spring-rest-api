@@ -3,7 +3,7 @@ package com.restapi.demoinfleanrestapi.configs;
 
 import com.restapi.demoinfleanrestapi.accounts.AccountService;
 import com.restapi.demoinfleanrestapi.common.AppProperties;
-import com.restapi.demoinfleanrestapi.common.BaseControllerTest;
+import com.restapi.demoinfleanrestapi.common.BaseTest;
 import com.restapi.demoinfleanrestapi.common.TestDescription;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AuthServerConfigTest extends BaseControllerTest {
+public class AuthServerConfigTest extends BaseTest {
 
     @Autowired
     AccountService accountService;

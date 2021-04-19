@@ -1,26 +1,20 @@
 package com.restapi.demoinfleanrestapi.accounts;
 
 import com.restapi.demoinfleanrestapi.common.AppProperties;
+import com.restapi.demoinfleanrestapi.common.BaseTest;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
-public class AccountServiceTest {
+public class AccountServiceTest extends BaseTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
