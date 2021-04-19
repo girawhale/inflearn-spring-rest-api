@@ -1,5 +1,6 @@
 package com.restapi.demoinfleanrestapi.events;
 
+import com.restapi.demoinfleanrestapi.accounts.Account;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,9 @@ public class Event {
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private EventStatus eventStatus = EventStatus.DRAFT;
+
+    @ManyToOne
+    private Account manager;
 
     public void update() {
         // Update Free

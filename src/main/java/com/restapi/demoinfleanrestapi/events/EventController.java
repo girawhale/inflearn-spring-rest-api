@@ -1,6 +1,5 @@
 package com.restapi.demoinfleanrestapi.events;
 
-import com.restapi.demoinfleanrestapi.common.ErrorsResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +7,6 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -108,6 +106,6 @@ public class EventController {
     }
 
     private ResponseEntity badRequest(Errors errors) {
-        return ResponseEntity.badRequest().body(new ErrorsResource(errors));
+        return null;
     }
 }
