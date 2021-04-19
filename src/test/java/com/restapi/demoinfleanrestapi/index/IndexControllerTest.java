@@ -1,7 +1,7 @@
 package com.restapi.demoinfleanrestapi.index;
 
 import com.restapi.demoinfleanrestapi.common.BaseTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

@@ -5,7 +5,7 @@ import com.restapi.demoinfleanrestapi.accounts.AccountService;
 import com.restapi.demoinfleanrestapi.common.AppProperties;
 import com.restapi.demoinfleanrestapi.common.BaseTest;
 import com.restapi.demoinfleanrestapi.common.TestDescription;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;

@@ -1,14 +1,11 @@
 package com.restapi.demoinfleanrestapi.events;
 
 
-import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(JUnitParamsRunner.class)
 public class EventTest {
 
     @Test
