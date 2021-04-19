@@ -24,7 +24,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter { // �
 
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/api/**")
-                .anonymous()
+//                .anonymous() // 로그인 하지 않은 사용자만 가능
+                .permitAll() // 모든 사용자
 
                 .anyRequest()
                 .authenticated()

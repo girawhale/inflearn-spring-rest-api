@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //
 //                .authorizeRequests()
-//                .mvcMatchers(HttpMethod.GET, "/api/**").anonymous() // get요청을 모든 사용자에게 허용
+//                .mvcMatchers(HttpMethod.GET, "/api/**").permitAll() // get요청을 모든 사용자에게 허용
 ////                .mvcMatchers(HttpMethod.GET, "/api/**").authenticated() // get요청을 로그인된 사용자에게 허용
 //                .anyRequest().authenticated() // 나머지는 인증이 필요
 //        ;
