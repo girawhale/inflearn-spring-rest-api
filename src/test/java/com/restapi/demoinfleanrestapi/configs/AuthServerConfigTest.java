@@ -24,12 +24,6 @@ public class AuthServerConfigTest extends BaseControllerTest {
         // Given
         String username = "girawhale@naver.com";
         String password = "password";
-//        Account account = Account.builder()
-//                .email(username)
-//                .password(password)
-//                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-//                .build();
-//        accountService.saveAccount(account);
 
         String clientId = "myApp";
         String clientSecret = "pass";

@@ -14,8 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Set;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -37,12 +35,12 @@ public class AccountServiceTest {
         // Given
         String username = "girawhale@naver.com";
         String password = "password";
-        Account account = Account.builder()
-                .email(username)
-                .password(password)
-                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-                .build();
-        this.accountService.saveAccount(account);
+//        Account account = Account.builder()
+//                .email(username)
+//                .password(password)
+//                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
+//                .build();
+//        this.accountService.saveAccount(account);
 
         // When
         UserDetailsService userDetailsService = accountService;
